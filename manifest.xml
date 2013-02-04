@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin_manifest xmlns="http://www.elgg.org/plugin_manifest/1.8">
 	<name>Did You Know?</name>
-	<author>Mo</author>
-	<version>1.0b</version>
-	<description>Did you know box with random information for the sidebars: event calendar, groups.</description>
+	<author>mobabur94</author>
+	<version>1.1b</version>
+	<blurb>"Did you know?" sidebar module with random info.</blurb>
+	<description>Did you know sidebar module with random information. For the event calendar and groups plugins.</description>
+	<category>enhancements</category>
+	<screenshot>
+		<description>Sidebar Module</description>
+		<path>screenshots/1.png</path>
+	</screenshot>
+    <screenshot>
+		<description>Admin Panel</description>
+		<path>screenshots/2.png</path>
+	</screenshot>
 	<copyright>2013</copyright>
 	<license>GNU Public License version 2</license>
 	<requires>

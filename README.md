@@ -1,8 +1,9 @@
 Did You Know
 ============
 
-To customize the tips that show up, check out 'languages/en.php' for instructions.
+Known Bugs:
+    -if not all of the textareas in the admin panel are filled out, it is an issue
 
-There will be an update with an admin panel to make it easier to customize the tips.
-
-I love you.
+To Do:
+    -add ability to choose which plugins to enable for
+    -add ability to choose which language(s) to support

@@ -1,0 +1,6 @@
+1.1b
+-added admin panel
+-removed randomness to reduce chance of refreshing and getting the same tip
+
+1.0b
+-first release
