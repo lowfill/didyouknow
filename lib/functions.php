@@ -1,107 +1,58 @@
 <?php
 
-	function dykGetValuesEN($context){
+	function dyk_get_tips(){
 		$input = '';
-		if($context == 'event_calendar'){
-			$input = elgg_get_plugin_setting('dykEventCalendarEN', 'didyouknow');
+		$tips = array();
+		if(elgg_get_context() == 'event_calendar' && get_current_language() == 'en'){
+			$input = elgg_get_plugin_setting('event-calendar-en', 'didyouknow');
 		}
-		if($context == 'groups'){
-			$input = elgg_get_plugin_setting('dykGroupsEN', 'didyouknow');
+		if(elgg_get_context() == 'event_calendar' && get_current_language() == 'fr'){
+			$input = elgg_get_plugin_setting('event-calendar-fr', 'didyouknow');
 		}
-		if($input !== ''){
+		if(elgg_get_context() == 'groups' && get_current_language() == 'en'){
+			$input = elgg_get_plugin_setting('groups-en', 'didyouknow');
+		}
+		if(elgg_get_context() == 'groups' && get_current_language() == 'fr'){
+			$input = elgg_get_plugin_setting('groups-fr', 'didyouknow');
+		}
+		if($input !== '' && strstr($input, ";;") !== false){
 			$input = str_replace("\n", '', $input);
-			$values = explode(";;", $input);
-			array_splice($values, count($values) - 1);
-		}else{
-			$values = array();
+			$tips = explode(";;", $input);
+			array_pop($tips);
 		}
-		return $values;
+		return $tips;
 	}
 
-	function dykMakeKeysEN($context, $length){
+	function dyk_prepare(){
+		$input = '';
+		$tips = dyk_get_tips();
 		$keys = array();
-		if($length == 0){
-			return $keys;
+		for($i = 0; $i < count($tips); $i++){
+			$keys[] = elgg_get_context() . ':dyk:' . $i;
 		}
-		for($i = 0; $i < $length; $i++){
-			$keys[] = $context . ':dyk:' . $i;
-		}
-		return $keys;
+		return array_combine($keys, $tips);
 	}
 
-	function dykPrepareEN($context){
-		$values = dykGetValuesEN($context);
-		$keys = dykMakeKeysEN($context, count($values));
-		return array_combine($keys, $values);
+	function dyk_count(){
+		return count(dyk_get_tips());
 	}
 
-	function dykGetValuesFR($context){
-		$input = '';
-		if($context == 'event_calendar'){
-			$input = elgg_get_plugin_setting('dykEventCalendarFR', 'didyouknow');
-		}
-		if($context == 'groups'){
-			$input = elgg_get_plugin_setting('dykGroupsFR', 'didyouknow');
-		}
-		if($input !== ''){
-			$input = str_replace("\n", '', $input);
-			$values = explode(";;", $input);
-			array_splice($values, count($values) - 1);
+	function dyk_echo(){
+		if(dyk_count() !== 0){
+			$max = dyk_count() - 1;
+			$dykRandom = mt_rand(0, $max);
+			if(!isset($_SESSION['dyk'])){
+				$_SESSION['dyk'] = $dykRandom;
+			}else{
+				while($_SESSION['dyk'] == $dykRandom){
+					$dykRandom = mt_rand(0, $max);
+				}
+				$_SESSION['dyk'] = $dykRandom;
+			}
+			echo elgg_echo(elgg_get_context() . ':dyk:' . $dykRandom);
 		}else{
-			$values = array();
+			echo elgg_echo('didyouknow:error');
 		}
-		return $values;
-	}
-
-	function dykMakeKeysFR($context, $length){
-		$keys = array();
-		if($length == 0){
-			return $keys;
-		}
-		for($i = 0; $i < $length; $i++){
-			$keys[] = $context . ':dyk:' . $i;
-		}
-		return $keys;
-	}
-
-	function dykPrepareFR($context){
-		$values = dykGetValuesFR($context);
-		$keys = dykMakeKeysFR($context, count($values));
-		return array_combine($keys, $values);
-	}
-
-	function dykGetMaxGroups(){
-		$input = '';
-		if(get_current_language() == 'en'){
-			$input = elgg_get_plugin_setting('dykGroupsEN', 'didyouknow');
-		}
-		if(get_current_language() == 'fr'){
-			$input = elgg_get_plugin_setting('dykGroupsFR', 'didyouknow');
-		}
-		if($input !== '' && strstr($input, ';;') !== false){
-			$values = explode(";;", $input);
-			$max = count($values);
-		}else{
-			$max = 0;
-		}
-		return $max;
-	}
-
-	function dykGetMaxEventCalendar(){
-		$input = '';
-		if(get_current_language() == 'en'){
-			$input = elgg_get_plugin_setting('dykEventCalendarEN', 'didyouknow');
-		}
-		if(get_current_language() == 'fr'){
-			$input = elgg_get_plugin_setting('dykEventCalendarFR', 'didyouknow');
-		}
-		if($input !== '' && strstr($input, ';;') !== false){
-			$values = explode(";;", $input);
-			$max = count($values);
-		}else{
-			$max = 0;
-		}
-		return $max;
 	}
 
 ?>

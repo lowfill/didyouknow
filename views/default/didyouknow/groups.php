@@ -10,21 +10,6 @@
 		</h3>
 	</div>
 	<div class="elgg-body" id="dyktip">
-		<?php
-			if(dykGetMaxGroups() !== 0){
-				if(isset($_SESSION['dykCount'])){
-					if($_SESSION['dykCount'] >= dykGetMaxGroups() - 2){
-						$_SESSION['dykCount'] = 0;
-					}else{
-						$_SESSION['dykCount']++;
-					}
-				}else{
-					$_SESSION['dykCount'] = mt_rand(0, dykGetMaxGroups() - 2);
-				}
-				echo elgg_echo('groups:dyk:' . $_SESSION['dykCount']);
-			}else{
-				echo elgg_echo('didyouknow:error');
-			}
-		?>
+		<?php dyk_echo(); ?>
 	</div>
 </div>

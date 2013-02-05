@@ -1,3 +1,7 @@
+1.2b
+-added randomness back but improved random function by using sessions
+-rewrote all the messy functions and put them into one file [clean up]
+
 1.1b
 -added admin panel
 -removed randomness to reduce chance of refreshing and getting the same tip

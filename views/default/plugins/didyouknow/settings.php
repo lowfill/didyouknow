@@ -15,10 +15,10 @@
 	</tr>
 	<tr>
 		<td>
-			<textarea id="dyken" name="params[dykEventCalendarEN]"><?php echo elgg_get_plugin_setting('dykEventCalendarEN', 'didyouknow'); ?></textarea>
+			<textarea id="dyken" name="params[event-calendar-en]"><?php echo elgg_get_plugin_setting('event-calendar-en', 'didyouknow'); ?></textarea>
 		</td>
 		<td>
-			<textarea id="dykfr" name="params[dykEventCalendarFR]"><?php echo elgg_get_plugin_setting('dykEventCalendarFR', 'didyouknow'); ?></textarea>
+			<textarea id="dykfr" name="params[event-calendar-fr]"><?php echo elgg_get_plugin_setting('event-calendar-fr', 'didyouknow'); ?></textarea>
 		</td>
 	</tr>
 	<tr class="dykdark">
@@ -41,10 +41,10 @@
 	</tr>
 	<tr>
 		<td>
-			<textarea id="dyken" name="params[dykGroupsEN]"><?php echo elgg_get_plugin_setting('dykGroupsEN', 'didyouknow'); ?></textarea>
+			<textarea id="dyken" name="params[groups-en]"><?php echo elgg_get_plugin_setting('groups-en', 'didyouknow'); ?></textarea>
 		</td>
 		<td>
-			<textarea id="dykfr" name="params[dykGroupsFR]"><?php echo elgg_get_plugin_setting('dykGroupsFR', 'didyouknow'); ?></textarea>
+			<textarea id="dykfr" name="params[groups-fr]"><?php echo elgg_get_plugin_setting('groups-fr', 'didyouknow'); ?></textarea>
 		</td>
 	</tr>
 	<tr class="dykdark">
