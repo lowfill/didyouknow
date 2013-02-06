@@ -1,6 +1,6 @@
 <?php
 
-	require_once elgg_get_plugins_path() . '/didyouknow/lib/functions.php';
+	require_once dirname(dirname(__FILE__)) . '/lib/functions.php';
 
 	$lang = array(
         'didyouknow:title' => "Saviez-vous?",

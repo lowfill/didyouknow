@@ -15,22 +15,23 @@
 		if(elgg_get_context() == 'groups' && get_current_language() == 'fr'){
 			$input = elgg_get_plugin_setting('groups-fr', 'didyouknow');
 		}
-		if($input !== '' && strstr($input, ";;") !== false){
-			$input = str_replace("\n", '', $input);
-			$tips = explode(";;", $input);
+		$input = str_replace("\n", '', $input);
+		$tips = explode(";;", $input);
+		$last = end($tips);
+		if(empty($last)){
 			array_pop($tips);
 		}
 		return $tips;
 	}
 
 	function dyk_prepare(){
-		$input = '';
 		$tips = dyk_get_tips();
 		$keys = array();
 		for($i = 0; $i < count($tips); $i++){
 			$keys[] = elgg_get_context() . ':dyk:' . $i;
 		}
-		return array_combine($keys, $tips);
+		$output = array_combine($keys, $tips);
+		return $output;
 	}
 
 	function dyk_count(){
@@ -38,20 +39,35 @@
 	}
 
 	function dyk_echo(){
-		if(dyk_count() !== 0){
-			$max = dyk_count() - 1;
-			$dykRandom = mt_rand(0, $max);
-			if(!isset($_SESSION['dyk'])){
-				$_SESSION['dyk'] = $dykRandom;
-			}else{
-				while($_SESSION['dyk'] == $dykRandom){
-					$dykRandom = mt_rand(0, $max);
-				}
-				$_SESSION['dyk'] = $dykRandom;
-			}
-			echo elgg_echo(elgg_get_context() . ':dyk:' . $dykRandom);
-		}else{
+		if(dyk_count() == 0){
 			echo elgg_echo('didyouknow:error');
+		}
+		else{
+			$max = dyk_count() - 1;
+			if(dyk_count() >= 10){
+				$dykLast = mt_rand(0, $max);
+				if(!isset($_SESSION['dykRandy'])){
+					$_SESSION['dykRandy'] = $dykLast;
+				}else{
+					while($_SESSION['dykRandy'] == $dykLast){
+						$dykLast = mt_rand(0, $max);
+					}
+					$_SESSION['dykRandy'] = $dykLast;
+				}
+				echo elgg_echo(elgg_get_context() . ':dyk:' . $dykLast);
+			}
+			if(dyk_count() < 10){
+				if(isset($_SESSION['dykIndex'])){
+					if($_SESSION['dykIndex'] == $max){
+						$_SESSION['dykIndex'] = 0;
+					}else{
+						$_SESSION['dykIndex']++;
+					}
+				}else{
+					$_SESSION['dykIndex'] = mt_rand(0, $max);
+				}
+				echo elgg_echo(elgg_get_context() . ':dyk:' . $_SESSION['dykIndex']);
+			}
 		}
 	}
 
