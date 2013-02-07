@@ -1,3 +1,6 @@
+1.3b
+-improved random function to be random if more than 10 tips but not random if less than 10 tips
+
 1.2b
 -added randomness back but improved random function by using sessions
 -rewrote all the messy functions and put them into one file [clean up]
