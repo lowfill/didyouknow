@@ -12,130 +12,168 @@
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
   </head>
   <body>
-
-      <header>
-        <h1>Did You Know?</h1>
-        <p>the didyouknow elgg plugin</p>
-      </header>
-
-      <div id="banner">
-        <span id="logo"></span>
-
-        <a href="https://github.com/mobabur94/didyouknow" class="button fork"><strong>View On GitHub</strong></a>
-        <div class="downloads">
-          <span>Downloads:</span>
-          <ul>
-            <li><a href="https://github.com/mobabur94/didyouknow/zipball/master" class="button">ZIP</a></li>
-            <li><a href="https://github.com/mobabur94/didyouknow/tarball/master" class="button">TAR</a></li>
-          </ul>
-        </div>
-      </div><!-- end banner -->
-
+  
+    <header>
+      <h1>Did You Know?</h1>
+      <p>the didyouknow elgg plugin</p>
+    </header>
+    
+    <div id="banner">
+      <span id="logo"></span>
+      <a href="https://github.com/mobabur94/didyouknow" class="button fork">
+        <strong>
+          View On GitHub
+        </strong>
+      </a>
+      <div class="downloads">
+        <span>Downloads:</span>
+        <ul>
+          <li>
+            <a href="https://github.com/mobabur94/didyouknow/zipball/master" class="button">
+              ZIP
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/mobabur94/didyouknow/tarball/master" class="button">
+              TAR
+            </a>
+          </li>
+        </ul>
+      </div><!-- end downloads -->
+    </div><!-- end banner -->
+    
     <div class="wrapper">
-      <nav>
-        <ul></ul>
-      </nav>
       <section>
-<p><em>version 1.3b</em></p>
-<p>Changes:</p>
-<ul>
-  <li>
-    better random function: if less than 10 tips, random first time then goes in order. but if 10 or more tips, random each time
-  </li>
-</ul>
-
-<p>To Do:</p>
-<ul>
-  <li>
-    add ability to choose which plugins to enable for
-  </li>
-  <li>
-    add ability to choose which language(s) to support
-  </li>
-</ul>
-
-<p>Known Bugs:</p>
-<ul>
-  <li>
-    if not all of the textareas in the admin panel are filled out, it might be an issue
-  </li>
-</ul>
-
-<hr>
-
-<p><em>version 1.2b</em></p>
-<p>Changes:</p>
-
-<ul>
-<li>added randomness back but with an improved random function which uses a session variable to make sure you don't get the same tip twice in a row</li>
-<li>cleaned up functions quite a bit and put them all in one file</li>
-</ul>
-
-<p>To Do:</p>
-
-<ul>
-<li>add ability to choose which plugins to enable for</li>
-<li>add ability to choose which language(s) to support</li>
-<li>-make it random if you have more than like 15 tips or just in order if less than 15</li>
-</ul>
-
-<hr>
-
-<p><em>version 1.1b</em></p>
-<p>Changes:</p>
-
-<ul>
-<li>added admin panel</li>
-<li>removed randomness to reduce chance of refreshing and getting the same tip</li>
-</ul>
-
-<p>To Do:</p>
-
-<ul>
-<li>add ability to choose which plugins to enable for</li>
-<li>add ability to choose which language(s) to support</li>
-</ul>
-
-<hr>
-
-<p><em>version 1.0b</em></p>
-<p>This is my first plugin for elgg. It's not really complete yet, but it works fine and might as well share my progress.</p>
-
-<p>It is a really simple plugin. It is a sidebar module that has little pieces of information for new users. The idea came from the File Tools plugin. But that was only for that plugin, and it would be better if it could be for any plugin. So far, this works with the Groups and Event Calendar plugins.</p>
-
-<p>The site I work on is English/French so it is good for multiple languages.</p>
-
-<p>Thanks to Matt Beckett for <a href="http://community.elgg.org/discussion/view/1169408/extend-view-priority">helping me</a>.</p>
-
-<p>To customize the tips that show up, check out 'languages/en.php' for instructions.</p>
-
-<p>To Do:</p>
-
-<ul>
-<li>Add an admin panel to make it a lot easier to use and customize.</li>
-<li>Add more plugins.</li>
-<li>Figure out what else to do to make it better.</li>
-</ul>
+        <p><em>version 1.3b</em></p>
+        <p>Changes:</p>
+        <ul>
+          <li>
+            better random function: if less than 10 tips, random first time then goes in order. but if 10 or more tips, random each time
+          </li>
+        </ul>
+        
+        <p>To Do:</p>
+        <ul>
+          <li>
+            add ability to choose which plugins to enable for
+          </li>
+          <li>
+            add ability to choose which language(s) to support
+          </li>
+        </ul>
+        
+        <p>Known Bugs:</p>
+        <ul>
+          <li>
+            if not all of the textareas in the admin panel are filled out, it might be an issue
+          </li>
+        </ul>
+        
+        <hr>
+        
+        <p><em>version 1.2b</em></p>
+        <p>Changes:</p>
+        <ul>
+          <li>
+            added randomness back but with an improved random function which uses a session variable to make sure you don't get the same tip twice in a row
+          </li>
+          <li>
+            cleaned up functions quite a bit and put them all in one file
+          </li>
+        </ul>
+        
+        <p>To Do:</p>
+        <ul>
+          <li>
+            add ability to choose which plugins to enable for
+          </li>
+          <li>
+            add ability to choose which language(s) to support
+          </li>
+          <li>
+            make it random if you have more than like 15 tips or just in order if less than 15
+          </li>
+        </ul>
+        
+        <hr>
+        
+        <p><em>version 1.1b</em></p>
+        <p>Changes:</p>
+        <ul>
+          <li>
+            added admin panel
+          </li>
+          <li>
+            removed randomness to reduce chance of refreshing and getting the same tip
+          </li>
+        </ul>
+        
+        <p>To Do:</p>
+        <ul>
+          <li>
+            add ability to choose which plugins to enable for
+          </li>
+          <li>
+            add ability to choose which language(s) to support
+          </li>
+        </ul>
+        
+        <hr>
+        
+        <p><em>version 1.0b</em></p>
+        <p>
+          This is my first plugin for elgg. It's not really complete yet, but it works fine and might as well share my progress.
+        </p>
+        <p>
+          It is a really simple plugin. It is a sidebar module that has little pieces of information for new users. The idea came from the File Tools plugin. But that was only for that plugin, and it would be better if it could be for any plugin. So far, this works with the Groups and Event Calendar plugins.
+        </p>
+        <p>
+          The site I work on is English/French so it will be good for multiple languages.
+        </p>
+        <p>
+          Thanks to Matt Beckett for <a href="http://community.elgg.org/discussion/view/1169408/extend-view-priority">helping me</a>.
+        </p>
+        <p>
+          To customize the tips that show up, check out 'languages/en.php' for instructions.
+        </p>
+        
+        <p>To Do:</p>
+        <ul>
+          <li>
+            Add an admin panel to make it a lot easier to use and customize.
+          </li>
+          <li>
+            Add more plugins.
+          </li>
+          <li>
+            Figure out what else to do to make it better.
+          </li>
+        </ul>
+        
+        <hr>
+        
       </section>
       <footer>
-        <p>Project maintained by <a href="https://github.com/mobabur94">mobabur94</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></small></p>
+        <p>
+          Project maintained by <a href="https://github.com/mobabur94">mobabur94</a>
+        </p>
+        <p>
+          <small>
+            Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a>
+          </small>
+        </p>
       </footer>
-    </div>
+    </div><!-- end wrapper -->
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-              <script type="text/javascript">
-            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-          </script>
-          <script type="text/javascript">
-            try {
-              var pageTracker = _gat._getTracker("UA-38051586-1");
-            pageTracker._trackPageview();
-            } catch(err) {}
-          </script>
-
+    <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      try {
+        var pageTracker = _gat._getTracker("UA-38051586-1");
+        pageTracker._trackPageview();
+      } catch(err) {}
+    </script>
   </body>
 </html>
