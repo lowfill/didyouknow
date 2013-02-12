@@ -1,2 +1,0 @@
-1. Copy to mod folder.
-2. Visit admin panel and load defaults, then save.

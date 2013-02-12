@@ -3,10 +3,10 @@
 		require_once dirname(__FILE__) . '/lib/functions.php';
 		elgg_extend_view('js/elgg', 'didyouknow/js');
 		elgg_extend_view('css/admin', 'didyouknow/css');
-        if(elgg_get_context() == 'event_calendar'){
+        if(elgg_get_context() == 'event_calendar' && elgg_get_plugin_setting('event_calendar_toggle', 'didyouknow') == 'yes'){
             elgg_extend_view('page/elements/sidebar', 'didyouknow/event_calendar');
         }
-        if(elgg_get_context() == 'groups'){
+        if(elgg_get_context() == 'groups' && elgg_get_plugin_setting('groups_toggle', 'didyouknow') == 'yes'){
             elgg_extend_view('groups/sidebar/find', 'didyouknow/groups', 1);
         }
     }

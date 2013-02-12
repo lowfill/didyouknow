@@ -1,12 +1,41 @@
-Did You Know
-============
+# Did You Know?
 
-Known Bugs:
+## Install:
 
-    -if not all of the textareas in the admin panel are filled out, it might be an issue
+1. Copy to mod folder.
+2. Visit admin panel and set it up.
+3. Save and hopefully enjoy.
 
-To Do:
+## Changelog:
 
-    -add ability to choose which plugins to enable for
+#### 1.4b
 
-    -add ability to choose which language(s) to support
+* added ability to choose which plugins to support  
+* added tooltips for the module icons  
+
+#### 1.3b
+
+* improved random function again  
+
+#### 1.2b
+
+* added randomness back but improved random function by using sessions  
+* rewrote all the messy functions and put them into one file [clean up]  
+
+#### 1.1b
+
+* added admin panel  
+* removed randomness to reduce chance of refreshing and getting the same tip  
+
+#### 1.0b
+
+* first release  
+
+## Known Bugs:
+
+* if not all of the textareas in the admin panel are filled out, it might be an issue  
+
+## To Do:
+
+* add ability to choose which language(s) to support  
+* make it random if you have more than like 15 tips or just in order if less than 15  

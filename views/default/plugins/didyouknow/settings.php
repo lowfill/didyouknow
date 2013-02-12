@@ -1,55 +1,23 @@
-<p>
-	You may edit the textarea's below. The tips are separated by two semi-colons (;;). There are a few bugs though, so if you need to, <a href="#" id="dykLoadDefaults">click here to load the defaults</a>.
+<!-- <p>
+	You may edit the textareas below. The tips are separated by two semi-colons (;;). There are a few bugs though, so if you need to, <a href="#" id="dykLoadDefaults">click here to load the defaults</a> and then click save.
+</p> -->
+<h1 id="dykLoadDefaults">
+	<a href="#">Load Default Settings</a>
+</h1>
+<h2 class="dykMargin">
+	Instructions
+</h2>
+<p class="dykMargin">
+	1. Load the default settings.
 </p>
-<table id="dykevent-calendar">
-	<tr class="dykdark">
-		<td rowspan="3" class="dyktitle">
-			<h3>Event Calendar</h3>
-		</td>
-		<td>
-			<h3>English<h3>
-		</td>
-		<td>
-			<h3>Français</h3>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<textarea id="dyken" name="params[event-calendar-en]"><?php echo elgg_get_plugin_setting('event-calendar-en', 'didyouknow'); ?></textarea>
-		</td>
-		<td>
-			<textarea id="dykfr" name="params[event-calendar-fr]"><?php echo elgg_get_plugin_setting('event-calendar-fr', 'didyouknow'); ?></textarea>
-		</td>
-	</tr>
-	<tr class="dykdark">
-		<td colspan = "2" id="dykurl">
-			<a href="http://translate.google.com/#en/fr/" target="_blank">--- Google Translate --></a>
-		</td>
-	</tr>
-</table>
-<table id ="dykgroups">
-	<tr class="dykdark">
-		<td rowspan="3" class="dyktitle">
-			<h3>Groups</h3>
-		</td>
-		<td>
-			<h3>English<h3>
-		</td>
-		<td>
-			<h3>Français</h3>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<textarea id="dyken" name="params[groups-en]"><?php echo elgg_get_plugin_setting('groups-en', 'didyouknow'); ?></textarea>
-		</td>
-		<td>
-			<textarea id="dykfr" name="params[groups-fr]"><?php echo elgg_get_plugin_setting('groups-fr', 'didyouknow'); ?></textarea>
-		</td>
-	</tr>
-	<tr class="dykdark">
-		<td colspan = "2" id="dykurl">
-			
-		</td>
-	</tr>
-</table>
+<p class="dykMargin">
+	2. Save.
+</p>
+<p class="dykMargin">
+	3. Optional: Edit the textareas below. The tips are separated by two semi-colons (;;). Remember to add two semi-colons to the ends.
+</p>
+<?php
+	require_once dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/lib/functions.php';
+	dyk_echo_setting("event_calendar");
+	dyk_echo_setting("groups");
+?>

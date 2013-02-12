@@ -1,5 +1,12 @@
-#dykLoadDefaults{
+.dykMargin {
+	margin: 10px;
+}
+#dykLoadDefaults {
 	font-weight: bold;
+	text-align: right;
+}
+#dykLoadDefaults a{
+	color: red;
 }
 #didyouknow-settings table {
 	width: 100%;
