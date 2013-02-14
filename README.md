@@ -8,6 +8,12 @@
 
 ## Changelog:
 
+#### 1.5b
+
+* cleaned up some functions
+* added comments to files so people can more easily customize this plugin
+* new icons for toggle and refresh
+
 #### 1.4b
 
 * added ability to choose which plugins to support  
@@ -38,4 +44,4 @@
 ## To Do:
 
 * add ability to choose which language(s) to support  
-* make it random if you have more than like 15 tips or just in order if less than 15  
+* add more plugins for support

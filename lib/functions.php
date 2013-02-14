@@ -1,7 +1,11 @@
 <?php
+
+	// dyk_title takes the mod context and returns a title version of it
 	function dyk_title($mod_context){
 		return ucwords(str_replace('_', ' ', $mod_context));
 	}
+
+	// dyk_echo_toggle creates the setting for enabling or disabling the settings
 	function dyk_echo_toggle($mod_context){
 		echo elgg_view('input/dropdown', array(
 			'name' => 'params[' . $mod_context . '_toggle]',
@@ -13,6 +17,8 @@
 			),
 		));
 	}
+
+	// dyk_echo_setting creates the structure for a plugin settings in the did you know admin panel
 	function dyk_echo_setting($mod_context){
 		echo "<table id=\"dyk_" . $mod_context . "\">";
 			echo "<tr class=\"dykdark\">";
@@ -42,21 +48,16 @@
 			echo "</tr>";
 		echo "</table>";
 	}
+
+	// dyk_get_setting returns the string that is saved in the settings
+	function dyk_get_setting($mod_context, $lang){
+		return elgg_get_plugin_setting($mod_context . '_' . $lang, 'didyouknow');
+	}
+
+	// dyk_get_tips parses the string saved in the settings and returns an array of the tips
 	function dyk_get_tips(){
-		$input = '';
 		$tips = array();
-		if(elgg_get_context() == 'event_calendar' && get_current_language() == 'en'){
-			$input = elgg_get_plugin_setting('event-calendar-en', 'didyouknow');
-		}
-		if(elgg_get_context() == 'event_calendar' && get_current_language() == 'fr'){
-			$input = elgg_get_plugin_setting('event-calendar-fr', 'didyouknow');
-		}
-		if(elgg_get_context() == 'groups' && get_current_language() == 'en'){
-			$input = elgg_get_plugin_setting('groups-en', 'didyouknow');
-		}
-		if(elgg_get_context() == 'groups' && get_current_language() == 'fr'){
-			$input = elgg_get_plugin_setting('groups-fr', 'didyouknow');
-		}
+		$input = dyk_get_setting(elgg_get_context(), get_current_language());
 		$input = str_replace("\n", '', $input);
 		$tips = explode(";;", $input);
 		$last = end($tips);
@@ -65,6 +66,8 @@
 		}
 		return $tips;
 	}
+
+	// dyk_prepare prepares the array of tips for adding to the language array by creating unique keys and all that jazz
 	function dyk_prepare(){
 		$tips = dyk_get_tips();
 		$keys = array();
@@ -74,9 +77,13 @@
 		$output = array_combine($keys, $tips);
 		return $output;
 	}
+
+	// dyk_count simply retuns the amount of tips in the settings
 	function dyk_count(){
 		return count(dyk_get_tips());
 	}
+
+	// dyk_echo is what displays the content of the did you know module and makes sure you don't see the same tip twice in a row
 	function dyk_echo(){
 		if(dyk_count() == 0){
 			echo elgg_echo('didyouknow:error');

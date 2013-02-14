@@ -1,6 +1,3 @@
-<!-- <p>
-	You may edit the textareas below. The tips are separated by two semi-colons (;;). There are a few bugs though, so if you need to, <a href="#" id="dykLoadDefaults">click here to load the defaults</a> and then click save.
-</p> -->
 <h1 id="dykLoadDefaults">
 	<a href="#">Load Default Settings</a>
 </h1>
@@ -17,7 +14,12 @@
 	3. Optional: Edit the textareas below. The tips are separated by two semi-colons (;;). Remember to add two semi-colons to the ends.
 </p>
 <?php
+	// need this functions.php file
 	require_once dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/lib/functions.php';
+
+	// add settings for event calendar
 	dyk_echo_setting("event_calendar");
+
+	// add settings for groups
 	dyk_echo_setting("groups");
 ?>
