@@ -76,10 +76,33 @@
 		return $setting;
 	}
 
+	function dyk_get_context($context){
+		//TODO Get modules
+		$modules = array('event_calendar','groups','members','amigo_espacos','amigo_highlights');
+		if($context == ''){
+			return elgg_get_context();
+		}
+		if($context=='all'){
+			$max = count($modules)-1;
+			$dykLast = mt_rand(0, $max);
+			$mod_context = $modules[$dykLast];
+		}
+		else{
+			$mod_context = $context;
+		}
+		//TODO get hook for mapping
+		$map = array('events'=>'event_calendar','espacos'=>'amigo_espacos','highlights'=>'amigo_highlights');
+		if(in_array($mod_context,$map)){
+			$mod_context = current(array_keys($map,$mod_context));
+		}
+		return $mod_context;
+
+	}
+
 	// dyk_get_tips parses the string saved in the settings and returns an array of the tips
-	function dyk_get_tips(){
+	function dyk_get_tips($context=''){
 		$tips = array();
-		$input = dyk_get_setting(elgg_get_context(), get_current_language());
+		$input = dyk_get_setting(dyk_get_context($context), get_current_language());
 		$input = str_replace("\n", '', $input);
 		$tips = explode(";;", $input);
 		$last = end($tips);
@@ -90,29 +113,32 @@
 	}
 
 	// dyk_prepare prepares the array of tips for adding to the language array by creating unique keys and all that jazz
-	function dyk_prepare(){
-		$tips = dyk_get_tips();
+	function dyk_prepare($context=''){
+		$context = dyk_get_context($context);
+		$tips = dyk_get_tips($context);
 		$keys = array();
 		for($i = 0; $i < count($tips); $i++){
-			$keys[] = elgg_get_context() . ':dyk:' . $i;
+			$keys[] = $context . ':dyk:' . $i;
 		}
 		$output = array_combine($keys, $tips);
 		return $output;
 	}
 
 	// dyk_count simply retuns the amount of tips in the settings
-	function dyk_count(){
-		return count(dyk_get_tips());
+	function dyk_count($context=''){
+		return count(dyk_get_tips($context));
 	}
 
 	// dyk_echo is what displays the content of the did you know module and makes sure you don't see the same tip twice in a row
-	function dyk_echo(){
-		if(dyk_count() == 0){
+	function dyk_echo($context=''){
+		$context = dyk_get_context($context);
+		$count = dyk_count($context);
+		if( $count == 0){
 			echo elgg_echo('didyouknow:error');
 		}
 		else{
-			$max = dyk_count() - 1;
-			if(dyk_count() >= 10){
+			$max = $count - 1;
+			if($count >= 10){
 				$dykLast = mt_rand(0, $max);
 				if(!isset($_SESSION['dykRandy'])){
 					$_SESSION['dykRandy'] = $dykLast;
@@ -122,9 +148,9 @@
 					}
 					$_SESSION['dykRandy'] = $dykLast;
 				}
-				echo elgg_echo(elgg_get_context() . ':dyk:' . $dykLast);
+				echo elgg_echo($context . ':dyk:' . $dykLast);
 			}
-			if(dyk_count() < 10){
+			if($count < 10){
 				if(isset($_SESSION['dykIndex'])){
 					if($_SESSION['dykIndex'] >= $max){
 						$_SESSION['dykIndex'] = 0;
@@ -134,7 +160,7 @@
 				}else{
 					$_SESSION['dykIndex'] = mt_rand(0, $max);
 				}
-				echo elgg_echo(elgg_get_context() . ':dyk:' . $_SESSION['dykIndex']);
+				echo elgg_echo($context . ':dyk:' . $_SESSION['dykIndex']);
 			}
 		}
 	}
