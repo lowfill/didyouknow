@@ -20,38 +20,60 @@
 
 	// dyk_echo_setting creates the structure for a plugin settings in the did you know admin panel
 	function dyk_echo_setting($mod_context){
+		$languages = get_installed_translations();
 		echo "<table id=\"dyk_" . $mod_context . "\">";
 			echo "<tr class=\"dykdark\">";
 				echo "<td rowspan=\"3\" class=\"dyktitle\">";
 					echo "<h3>" . dyk_title($mod_context) . "</h3><br />";
 					dyk_echo_toggle($mod_context);
 				echo "</td>";
-				echo "<td>";
-					echo "<h3>English</h3>";
-				echo "</td>";
-				echo "<td>";
-					echo "<h3>French</h3>";
-				echo "</td>";
+				foreach($languages as $lang => $name){
+					$completeness = get_language_completeness($lang);
+					if($lang =='en' || $completeness > 60){
+						echo "<td>";
+							echo "<h3>{$name}</h3>";
+						echo "</td>";
+					}
+				}
 			echo "</tr>";
 			echo "<tr>";
-				echo "<td>";
-					echo "<textarea class=\"elgg-input-plaintext\" id=\"dyken\" name=\"params[" . $mod_context . "_en]\">" . elgg_get_plugin_setting($mod_context . '_en', 'didyouknow') . "</textarea>";
-				echo "</td>";
-				echo "<td>";
-					echo "<textarea class=\"elgg-input-plaintext\" id=\"dykfr\" name=\"params[" . $mod_context . "_fr]\">" . elgg_get_plugin_setting($mod_context . '_fr', 'didyouknow') . "</textarea>";
-				echo "</td>";
-			echo "</tr>";
-			echo "<tr class=\"dykdark\">";
-				echo "<td colspan=\"2\" id=\"dykurl\">";
-					echo "<h6><a href=\"http://translate.google.com/#en/fr/\" target=\"_blank\">→ Google Translate →</a></h6>";
-				echo "</td>";
+				foreach($languages as $lang =>$name){
+					$completeness = get_language_completeness($lang);
+					if($lang =='en' || $completeness > 60){
+						echo "<td>";
+							echo "<textarea class=\"elgg-input-plaintext\" id=\"dyken\" name=\"params[" . $mod_context . "_{$lang}]\">" . elgg_get_plugin_setting($mod_context . '_'.$lang, 'didyouknow') . "</textarea>";
+						echo "</td>";
+					}
+				}
 			echo "</tr>";
 		echo "</table>";
 	}
 
 	// dyk_get_setting returns the string that is saved in the settings
 	function dyk_get_setting($mod_context, $lang){
-		return elgg_get_plugin_setting($mod_context . '_' . $lang, 'didyouknow');
+		//TODO Add hook for manage equivalent context
+		$map = array('events'=>'event_calendar','espacos'=>'amigo_espacos','highlights'=>'amigo_highlights');
+		if(array_key_exists($mod_context,$map)){
+			$context = $map[$mod_context];
+		}
+		else{
+			$context = $mod_context;
+		}
+
+		if(!is_array($context)){
+			$context = array($context);
+		}
+		foreach($context as $dykcontext){
+			$setting = elgg_get_plugin_setting($dykcontext . '_' . $lang, 'didyouknow');
+
+			if(empty($setting)){
+				$setting = elgg_get_plugin_setting($dykcontext . '_en', 'didyouknow');
+			}
+			if(!empty($setting)){
+				break;
+			}
+		}
+		return $setting;
 	}
 
 	// dyk_get_tips parses the string saved in the settings and returns an array of the tips
@@ -104,7 +126,7 @@
 			}
 			if(dyk_count() < 10){
 				if(isset($_SESSION['dykIndex'])){
-					if($_SESSION['dykIndex'] == $max){
+					if($_SESSION['dykIndex'] >= $max){
 						$_SESSION['dykIndex'] = 0;
 					}else{
 						$_SESSION['dykIndex']++;

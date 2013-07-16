@@ -17,9 +17,10 @@
 	// need this functions.php file
 	require_once dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/lib/functions.php';
 
-	// add settings for event calendar
-	dyk_echo_setting("event_calendar");
+	//TODO Add hook for extend modules support
+	$modules = arraY('event_calendar','groups','members','amigo_espacos','amigo_highlights');
 
-	// add settings for groups
-	dyk_echo_setting("groups");
+	foreach($modules as $module){
+		dyk_echo_setting($module);
+	}
 ?>
